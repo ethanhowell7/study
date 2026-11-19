@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CH 102 Lab Final Prep</title>
+<meta name="description" content="Visual, guided study site for the NC State CH 102 lab final: all 11 labs, interactive diagrams, drills, quiz, mock exam and flashcards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#home">CH 102 <b>Lab Final</b></a>
+  <nav class="tabs" aria-label="Sections">
+    <a href="#home">Start</a><a href="#lab-1">Labs</a><a href="#formulas">Formulas</a><a href="#drills">Drills</a><a href="#write">Write it</a><a href="#quiz">Quiz</a><a href="#mock">Mock exam</a><a href="#cards">Flashcards</a><a href="#exam">Exam day</a>
+  </nav>
+</div></header>
+
+<section class="view hero" id="v-home">
+  <div class="wrap">
+    <h1>Get ready for the CH 102 lab final</h1>
+    <p class="lede">Everything from all 11 experiments, explained one lab at a time with something to click on. Follow the five steps in order; your progress saves in this browser.</p>
+    <div class="path">
+      <a href="#blueprint-top"><b>See what's on the final</b><span>17 questions across 14 topics, straight from the professor's guide.</span></a>
+      <a href="#lab-0"><b>Learn each lab</b><span>Every lab page opens with what the final asks and how to answer it.</span></a>
+      <a href="#drills"><b>Drill the math</b><span>Every calculation type on the guide, with fresh numbers.</span></a>
+      <a href="#write"><b>Practice writing answers</b><span>Lewis structures, net ionic, qual schemes, Brønsted and redox reactions.</span></a>
+      <a href="#mock"><b>Quiz, then mock exam</b><span>Aim for 80%+ on every lab tile, then take the mock.</span></a>
+    </div>
+    <h3 id="blueprint-top">What's on the final: <span id="bpn"></span> questions</h3>
+    <div class="tbl"><table class="bp"><thead><tr><th>Topic</th><th>Qs</th><th>You'll be asked to</th><th></th></tr></thead><tbody id="bp"></tbody></table></div>
+    <p class="cap">A formula sheet is provided during the exam (don't bring a printout of it). Your own one-page sheet covers methods and facts.</p>
+    <h3>Your labs</h3>
+    <div class="board" id="board"></div>
+    <p class="sub" id="stats"></p>
+  </div>
+</section>
+
+<main><div class="wrap">
+  <section class="view" id="v-lab" hidden></section>
+
+  <section class="view" id="v-formulas" hidden>
+    <h2>Every formula, by lab</h2>
+    <p class="sub">If you can write each box from memory, you can do every calculation on the final.</p>
+    <div class="fgrid" id="fgrid"></div>
+  </section>
+
+  <section class="view" id="v-drills" hidden>
+    <h2>Calculation drills</h2>
+    <p class="sub">New numbers each time. Type your answer (1% tolerance), or tap "Show solution" to see every step.</p>
+    <div id="drills"></div>
+  </section>
+
+  <section class="view" id="v-write" hidden>
+    <h2>Write-it practice</h2>
+    <p class="sub">The final asks you to write things out: dissolution and net ionic equations, qual schemes, Lewis structures, unit-cell formulas, K expressions, Brønsted and redox reactions. Write your answer on paper, then reveal.</p>
+    <div class="lnav" id="wfilter"></div>
+    <div class="row"><button class="btn ghost" id="wall">Reveal all</button><button class="btn ghost" id="whide">Hide all</button></div>
+    <div id="wlist"></div>
+  </section>
+
+  <section class="view" id="v-quiz" hidden>
+    <h2>Quiz bank</h2>
+    <p class="sub">Pick a lab or take them all. Answers save in this browser and fill the meters on the Start page.</p>
+    <div class="lnav" id="qfilter"></div>
+    <div class="row"><button class="pill" id="missOnly" aria-pressed="false">Missed only</button><button class="btn ghost" id="qreset">Reset answers</button><span class="score" id="qscore"></span></div>
+    <div id="qlist"></div>
+  </section>
+
+  <section class="view" id="v-mock" hidden>
+    <h2>Mock exam</h2>
+    <p class="sub">30 questions: at least two from every lab plus lab skills, the rest random. Score appears as you go.</p>
+    <div class="row"><button class="btn" id="mockGo">Start a new mock exam</button><span class="score" id="mscore"></span></div>
+    <div id="mlist"></div>
+  </section>
+
+  <section class="view" id="v-cards" hidden>
+    <h2>Flashcards</h2>
+    <p class="sub">Tap the card to flip. "I know it" drops it from the deck. Space flips, arrow keys move.</p>
+    <div class="flash"><div class="card" id="card" tabindex="0" role="button" aria-label="Flip card"></div></div>
+    <div class="row" style="justify-content:center"><button class="btn ghost" id="cPrev">Back</button><button class="btn ghost" id="cKnow">I know it</button><button class="btn" id="cNext">Next</button></div>
+    <p class="sub" style="text-align:center" id="cinfo"></p>
+  </section>
+
+  <section class="view" id="v-exam" hidden>
+    <h2>Exam day</h2>
+    <p class="sub">The final is 100 points (8.33% of CH 102): 17 questions. A formula sheet is given to you during the exam; don't bring a printout of it. You may bring your own one-page sheet.</p>
+    <div class="grid2">
+      <div>
+        <h3>Your exam sheet</h3>
+        <p>One side, letter size, organized by the professor's 14 topics: how to answer every question type, plus the facts behind them. Print at 100% ("Actual size").</p>
+        <p><a class="btn" href="exam-sheet.pdf" target="_blank" rel="noopener">Open the exam sheet (PDF)</a></p>
+        <h3>The night before</h3>
+        <ul class="check" id="chk1"></ul>
+        <h3>In the exam</h3>
+        <div class="timeline">
+          <div><b>First 2 min</b><span>Skim the whole exam. Do the definition and safety questions first: they're fast points.</span></div>
+          <div><b>Calculations</b><span>Write the equation from your sheet, plug in with units, check mL → L or use mmol/mL, then sig figs.</span></div>
+          <div><b>Stuck?</b><span>Ask "which lab is this from?" and find that lab's box on your sheet.</span></div>
+          <div><b>Last 5 min</b><span>Check signs (ΔT, E_cell), mole ratios (Ca(OH)₂ is 2:1), and that every answer has units.</span></div>
+        </div>
+      </div>
+      <div>
+        <h3>31 things most likely to be asked</h3>
+        <ol class="proc" id="top25"></ol>
+      </div>
+    </div>
+  </section>
+</div></main>
+
+<script src="data.js"></script>
+<script src="visuals.js"></script>
+<script src="exam.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
